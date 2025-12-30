@@ -1,0 +1,6 @@
+- name: Configure macOS
+  hosts: localhost
+  gather_facts: true
+
+  roles:
+    - zsh

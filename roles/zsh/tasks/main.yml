@@ -1,0 +1,5 @@
+- name: Configure .zshrc
+  template:
+    src: zshrc.j2
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    mode: '0644'

@@ -1,0 +1,8 @@
+# Customization to show the git repo/branch
+autoload -Uz vcs_info
+precmd() { vcs_info }
+setopt PROMPT_SUBST
+PROMPT='%F{cyan}%~%f %F{yellow}${vcs_info_msg_0_}%f$ '
+zstyle ':vcs_info:git:*' formats '(%b)'
+
+export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
