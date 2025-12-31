@@ -1,0 +1,11 @@
+- name: Download Docker Desktop 4.55.0
+  get_url:
+    url: https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-mac-arm64&_gl=1*1chyl5m*_ga*MTg0ODYyOTA0LjE3NjcwODA1OTU.*_ga_XJWPQMJYHQ*czE3NjcxNTIxNDIkbzIkZzEkdDE3NjcxNTIxNDMkajU5JGwwJGgw
+    dest: /tmp/Docker.dmg
+    mode: '0644'
+
+- name: Install Docker Desktop
+  shell: |
+    hdiutil attach /tmp/Docker.dmg
+    /Volumes/Docker/Docker.app/Contents/MacOS/install
+    hdiutil detach /Volumes/Docker
