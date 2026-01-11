@@ -1,0 +1,8 @@
+galaxy_info:
+  role_name: utm
+  description: Install UTM on macOS
+  platforms:
+    - name: macOS
+      versions:
+        - all
+  license: MIT
