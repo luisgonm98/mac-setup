@@ -10,22 +10,9 @@
     mode: '0644'
   when: not utm_app.stat.exists
 
-- name: Mount UTM DMG
-  command: hdiutil attach "{{ utm_dmg_path }}"
-  args:
-    creates: "{{ utm_mount_path }}"
+- name: Install UTM DMG
+  shell: |
+    hdiutil attach {{ utm_dmg_path }}
+    cp -R {{ utm_mount_path }}/UTM.app /Applications/
+    hdiutil detach {{ utm_mount_path }}
   when: not utm_app.stat.exists
-
-- name: Copy UTM.app to Applications
-  copy:
-    src: "{{ utm_mount_path }}/UTM.app"
-    dest: "{{ utm_app_path }}"
-    remote_src: true
-  become: true
-  when: not utm_app.stat.exists
-
-- name: Unmount UTM DMG
-  command: hdiutil detach "{{ utm_mount_path }}"
-  when:
-    - not utm_app.stat.exists
-    - utm_mount_path is exists
