@@ -3,5 +3,6 @@
   gather_facts: true
 
   roles:
-    - zsh
-    - docker
+    - { role: zsh, tags: zsh }
+    - { role: docker, tags: docker }
+    - { role: utm, tags: utm }
