@@ -1,11 +1,18 @@
+- name: Check if Docker Desktop is already installed
+  stat:
+    path: /Applications/Docker.app
+  register: docker_app
+
 - name: Download Docker Desktop 4.55.0
   get_url:
     url: https://desktop.docker.com/mac/main/arm64/213807/Docker.dmg
     dest: /tmp/Docker.dmg
     mode: '0644'
+  when: not docker_app.stat.exists
 
 - name: Install Docker Desktop
   shell: |
     hdiutil attach /tmp/Docker.dmg
     /Volumes/Docker/Docker.app/Contents/MacOS/install
     hdiutil detach /Volumes/Docker
+  when: not docker_app.stat.exists
